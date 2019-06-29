@@ -1,0 +1,6 @@
+<div *ngIf="readyToDisplay()">
+  <app-story
+    *ngFor="let story of getDisplayStories()"
+    [story]="story"
+  ></app-story>
+</div>

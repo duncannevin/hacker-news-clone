@@ -1,1 +1,66 @@
-/* You can add global styles to this file, and also import other style files */
+@import './colors'
+@import './extensions'
+
+html, body
+  height: 100%
+  width: 100%
+
+body 
+  color: $green
+  font-family: 'Orbitron', sans-serif
+  background-color: $dark-green
+  padding: 100px 0
+
+.row
+  @extend %flex__row
+  justify-content: center
+  text-align: center
+  max-width: 100%
+  padding: 1rem 0
+
+.column
+  @extend %flex__column
+  align-items: center
+  max-width: 100%
+  flex-wrap: wrap
+
+ul 
+  list-style-type: none
+
+a 
+  color: $green
+  text-decoration: none
+  border-bottom: 1px solid $green
+  &.black
+    color: $black
+    border-color: $black
+
+.nav-container
+  @extend %flex__row
+  @extend %app__width
+  position: relative
+  height: min-content
+  .icon
+    @extend %center__contents
+    border: 0.09rem solid $green
+    height: 2rem
+    width: 2rem
+    background-color: $dark-green
+    &::after
+      content: "HN"
+      margin: 0 auto
+  .navs
+    @extend %flex__row
+    align-items: flex-end
+    padding: 0
+    margin: 0
+    li
+      margin: 0 2rem 0
+.navs__centered
+  justify-content: center
+
+.title
+  background-color: $med-green
+  border: 1px solid $black
+  color: $black
+  font-weight: 600

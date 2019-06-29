@@ -1,0 +1,17 @@
+@import '../../../colors'
+@import '../../../extensions'
+  
+:host
+  @extend %flex__row
+  @extend %center__contents
+  @extend %card__shadow
+  background-color: $black 
+  padding: 1rem
+  position: fixed
+  top: 0
+  right: 0
+  left: 0
+  z-index: 1000
+
+[active = "true"]
+  border-bottom: 3px solid $green

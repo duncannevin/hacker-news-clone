@@ -4,9 +4,8 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { HackernewsService } from './hackernews.service';
 import { topStories } from '../entities/storyparams.entity';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Item } from '../entities/item.entity';
 
-fdescribe('HackernewsService', () => {
+describe('HackernewsService', () => {
   let hackernewsService: HackernewsService;
   let httpTestingController: HttpTestingController;
 
@@ -31,14 +30,15 @@ fdescribe('HackernewsService', () => {
 
   it('should be able to fetch story id\'s', () => {
     hackernewsService.getIds(topStories)
-      .subscribe(ids => {
-        expect(ids).toBeTruthy();
-        expect(ids.length).toBe(4, 'Incorrect number of ids');
+      .subscribe(items => {
+        expect(items).toBeTruthy();
+        expect(items.length).toBe(4, 'Incorrect number of ids');
+        expect(items[0].id).toBe(1234);
       });
 
-    const req = httpTestingController.expectOne(`${hackernewsService.hnLocation}/${topStories}`)
+    const req = httpTestingController.expectOne(`${hackernewsService.hnLocation}/${topStories}.json`)
     expect(req.request.method).toEqual('GET');
-    req.flush(['1234', '5678', '9102', '12345'])
+    req.flush([1234, 5678, 9102, 12345])
   });
 
   it('should return [] with 404 response', () => {
@@ -52,7 +52,7 @@ fdescribe('HackernewsService', () => {
         }
       );
 
-    const req = httpTestingController.expectOne(`${hackernewsService.hnLocation}/${badParam}`);
+    const req = httpTestingController.expectOne(`${hackernewsService.hnLocation}/${badParam}.json`);
     expect(req.request.method).toEqual('GET');
     req.flush('Bad param used to call api', { status: 404, statusText: 'Bad request' })
   });

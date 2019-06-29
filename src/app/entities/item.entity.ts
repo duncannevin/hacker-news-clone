@@ -1,5 +1,6 @@
 export class Item {
   id: number
+  index?: number
   deleted?: boolean
   type?: string
   by?: string
@@ -14,4 +15,8 @@ export class Item {
   title?: string
   parts?: number[]
   descendants?: number[]
+
+  constructor(id: number) {
+    this.id = id
+  }
 }

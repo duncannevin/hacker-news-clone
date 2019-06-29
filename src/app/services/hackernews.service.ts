@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, tap, map } from 'rxjs/operators';
 
 import { Item } from '../entities/item.entity';
 import { validateParam } from '../entities/storyparams.entity';
@@ -20,10 +20,15 @@ export class HackernewsService {
    * 
    * @param type - type should be included in 'entities/storyparams.entity.ts'
    */
-  getIds(type: string): Observable<string[]> {
-    return this.http.get<string[]>(`${this.hnLocation}/${type}`)
+  getIds(type: string): Observable<Item[]> {
+    return this.http.get<number[]>(`${this.hnLocation}/${type}.json`)
       .pipe(
-        catchError(this.handleError<string[]>('getIds', []))
+        map(ids => {
+          return ids.map(id => {
+            return new Item(id)
+          })
+        }),
+        catchError(this.handleError<Item[]>('getIds', []))
       );
   }
 
