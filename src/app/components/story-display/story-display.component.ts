@@ -3,7 +3,7 @@ import { HackernewsService } from 'src/app/services/hackernews.service';
 import { Router } from '@angular/router';
 
 import { Item } from '../../entities/item.entity';
-import { STORIES } from '../../../STORIES';
+import { STORIES } from '../../common/STORIES';
 
 @Component({
   selector: 'app-story-display',

@@ -8,13 +8,15 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { StoryDisplayComponent } from './components/story-display/story-display.component';
 import { HackernewsService } from './services/hackernews.service';
 import { StoryComponent } from './components/story/story.component';
+import { TimePipe } from './pipes/time.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     StoryDisplayComponent,
-    StoryComponent
+    StoryComponent,
+    TimePipe
   ],
   imports: [
     BrowserModule,

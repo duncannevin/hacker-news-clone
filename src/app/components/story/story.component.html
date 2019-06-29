@@ -1,9 +1,11 @@
-<div class="row title"><a class="black" href="{{ story.url }}" target="_blank">{{ story.title }}</a></div>
+<div class="row title">
+  <a *ngIf="story" class="black" href="{{ story.url }}" target="_blank">{{ story.title }}</a>
+</div>
 <div class="nav-container navs__centered">
-  <ul class="navs">
+  <ul *ngIf="story" class="navs">
     <li>{{ story.score }} points</li>
     <li><a href="#">by {{ story.by }}</a></li>
-    <li>{{ story.time }} ago</li>
+    <li>{{ story.time | time }}</li>
     <li><a href="#">{{ story.kids?.length || 0 }} comments</a></li>
   </ul>
 </div>
