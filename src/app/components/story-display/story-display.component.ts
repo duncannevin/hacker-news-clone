@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { HackernewsService } from 'src/app/services/hackernews.service';
 import { Router } from '@angular/router';
 
@@ -20,6 +20,15 @@ export class StoryDisplayComponent implements OnInit {
     private router: Router
   ) { }
 
+  @HostListener('window:scroll', [ '$event' ])
+  onscroll(event) {
+    const windowScrollBottom = window.scrollY + window.innerHeight;
+    const appStoryHeight = document.querySelector('app-story-display').scrollHeight;
+    if (windowScrollBottom - appStoryHeight === 100) {
+      this.incrementCursor();
+    }
+  }
+
   ngOnInit() {
     this.setStoryType();
     this.getStoryIds();
@@ -35,6 +44,5 @@ export class StoryDisplayComponent implements OnInit {
 
   incrementCursor(): void {
     this.cursorPos += 30;
-    console.log(this.cursorPos);
   }
 }
