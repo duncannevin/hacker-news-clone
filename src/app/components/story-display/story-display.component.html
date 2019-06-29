@@ -1,6 +1,9 @@
-<div *ngIf="readyToDisplay()">
+<div *ngIf="stories$ | async; let stories; else loading">
   <app-story
-    *ngFor="let story of getDisplayStories()"
-    [story]="story"
+    *ngFor="let story of stories.slice(0, cursorPos); let ind = index;"
+    [storyId]="story.id"
+    [index]="ind"
   ></app-story>
+  <button (click)="incrementCursor()">Dare ya</button>
 </div>
+<ng-template>Loading Stories...</ng-template>

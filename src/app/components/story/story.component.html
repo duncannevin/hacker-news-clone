@@ -1,11 +1,15 @@
-<div class="row title">
-  <a *ngIf="story" class="black" href="{{ story.url }}" target="_blank">{{ story.title }}</a>
+<div *ngIf="story$ | async; let story; else loading;">
+  <span class="page-number">{{ index + 1 }}</span>
+  <div class="row title">
+    <a *ngIf="story" class="black" href="{{ story.title }}" target="_blank">{{ story.title }}</a>
+  </div>
+  <div class="nav-container navs__centered">
+    <ul *ngIf="story" class="navs">
+      <li>{{ story.score }} points</li>
+      <li><a href="#">by {{ story.by }}</a></li>
+      <li>{{ story.time | time }}</li>
+      <li><a href="#">{{ (story.kids || [] ).length }} comments</a></li>
+    </ul>
+  </div>
 </div>
-<div class="nav-container navs__centered">
-  <ul *ngIf="story" class="navs">
-    <li>{{ story.score }} points</li>
-    <li><a href="#">by {{ story.by }}</a></li>
-    <li>{{ story.time | time }}</li>
-    <li><a href="#">{{ story.kids?.length || 0 }} comments</a></li>
-  </ul>
-</div>
+<ng-template>Loading story...</ng-template>

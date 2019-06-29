@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { StoryDisplayComponent } from './components/story-display/story-display.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: 'newstories', component: StoryDisplayComponent },
   { path: 'beststories', component: StoryDisplayComponent },
   { path: 'askstories', component: StoryDisplayComponent },

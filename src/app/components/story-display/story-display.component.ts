@@ -3,7 +3,7 @@ import { HackernewsService } from 'src/app/services/hackernews.service';
 import { Router } from '@angular/router';
 
 import { Item } from '../../entities/item.entity';
-import { STORIES } from '../../common/STORIES';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-story-display',
@@ -12,9 +12,8 @@ import { STORIES } from '../../common/STORIES';
 })
 export class StoryDisplayComponent implements OnInit {
   storyType: string;
-  stories: Item[] = [];
-  // STORIES.map(s => s as Item);
-  cursorPos: number = 0;
+  stories$: Observable<Item[]>;
+  cursorPos: number = 30;
 
   constructor(
     private hackernewsService: HackernewsService,
@@ -31,33 +30,11 @@ export class StoryDisplayComponent implements OnInit {
   }
 
   getStoryIds(): void {
-    this.hackernewsService.getIds(this.storyType)
-      .subscribe(items => {
-        this.stories = items;
-        this.getStories();
-      });
+    this.stories$ = this.hackernewsService.getIds(this.storyType);
   }
 
-  getStories(): void {
-    const getStory: Item = this.stories[this.cursorPos]
-    if(!getStory || (this.cursorPos && this.cursorPos % 30 === 0)) {
-      return;
-    }
-    this.hackernewsService.getItem(this.stories[this.cursorPos].id)
-      .subscribe(story => {
-        story.index = this.cursorPos;
-        this.stories[this.cursorPos] = story as Item;
-        this.cursorPos++;
-        this.getStories();
-      });
-  }
-
-  getDisplayStories(): Item[] {
-    return this.stories.slice(0, this.cursorPos - 1);
-  }
-
-  readyToDisplay(): boolean {
-    const display = this.getDisplayStories();
-    return display.length && !!display[display.length - 1].index
+  incrementCursor(): void {
+    this.cursorPos += 30;
+    console.log(this.cursorPos);
   }
 }
