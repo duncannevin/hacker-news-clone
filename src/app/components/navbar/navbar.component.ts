@@ -24,5 +24,6 @@ export class NavbarComponent implements OnInit {
 
   updateSelected(link: Link) {
     this.selected = link;
+    window.scrollTo(0, 0);
   }
 }

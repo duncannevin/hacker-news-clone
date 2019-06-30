@@ -1,7 +1,7 @@
 <div *ngIf="story$ | async; let story; else loading;">
   <span class="page-number">{{ index + 1 }}</span>
   <div class="row title">
-    <a *ngIf="story" class="black" href="{{ story.title }}" target="_blank">{{ story.title }}</a>
+    <a *ngIf="story" class="black" href="{{ story.url }}" target="_blank">{{ story.title }}</a>
   </div>
   <div class="nav-container navs__centered">
     <ul *ngIf="story" class="navs">
