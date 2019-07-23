@@ -9,6 +9,7 @@ import { StoryDisplayComponent } from './components/story-display/story-display.
 import { HackernewsService } from './services/hackernews.service';
 import { StoryComponent } from './components/story/story.component';
 import { TimePipe } from './pipes/time.pipe';
+import { UserComponent } from './components/author/author.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { TimePipe } from './pipes/time.pipe';
     NavbarComponent,
     StoryDisplayComponent,
     StoryComponent,
+    UserComponent,
     TimePipe
   ],
   imports: [

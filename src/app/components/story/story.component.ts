@@ -23,10 +23,10 @@ export class StoryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getStory();
+    this.story$ = this.getStory();
   }
 
-  getStory() {
-    this.story$ = this.hackernewsService.getItem(this.storyId);
+  getStory(): Observable<Item> {
+    return this.hackernewsService.getItem(this.storyId);
   }
 }

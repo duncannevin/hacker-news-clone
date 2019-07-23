@@ -2,13 +2,13 @@
 @import './extensions'
 
 html, body
+  background-color: $dark-green
   height: 100%
   width: 100%
 
 body 
   color: $green
   font-family: 'Orbitron', sans-serif
-  background-color: $dark-green
   padding: 100px 0
 
 .row
@@ -28,11 +28,11 @@ ul
   list-style-type: none
 
 a 
-  color: $green
+  color: $green!important
   text-decoration: none
-  border-bottom: 1px solid $green
+  border-bottom: 1px solid $dark-green!important
   &.black
-    color: $black
+    color: $black!important
     border-color: $black
 
 .nav-container

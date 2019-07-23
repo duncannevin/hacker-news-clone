@@ -6,7 +6,7 @@
   <div class="nav-container navs__centered">
     <ul *ngIf="story" class="navs">
       <li>{{ story.score }} points</li>
-      <li><a href="#">by {{ story.by }}</a></li>
+      <li><a routerLink="/user/{{ story.by }}">by {{ story.by }}</a></li>
       <li>{{ story.time | time }}</li>
       <li><a href="#">{{ (story.kids || [] ).length }} comments</a></li>
     </ul>

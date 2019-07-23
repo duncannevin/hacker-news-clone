@@ -42,6 +42,13 @@ export class HackernewsService {
       )
   }
 
+  getAuthor(id: string): Observable<Item> {
+    return this.http.get<Item>(`${this.hnLocation}/user/${id}.json`)
+      .pipe(
+        catchError(this.handleError<Item>(`getUser`))
+      )
+  }
+
   /**
    * 
    * @private
